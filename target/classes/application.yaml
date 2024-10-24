@@ -1,13 +1,12 @@
+
+#Эта конфигурация для postgres которая находится локально
 spring:
   datasource:
+    url: ${datasource.url:jdbc:postgresql://localhost:5432/time_tracker}
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://postgres:5435/time_tracker
-    username: neatly
-    password: datasource.password:neatly
+    username: ${datasource.username:postgres}
+    password: ${datasource.password:postgres}
   flyway:
-    url: jdbc:postgresql://postgres:5435/time_tracker
-    user: neatly
-    password: neatly
     locations: classpath:db/migration
     enabled: true
 
@@ -16,3 +15,23 @@ jwt:
 
 server:
   port: 8080
+
+#эту конфигурация должна была быть для docker compose
+#spring:
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://postgres:5432/time_tracker
+#    username: neatly
+#    password: datasource.password:neatly
+#  flyway:
+#    url: jdbc:postgresql://postgres:5432/time_tracker
+#    user: neatly
+#    password: neatly
+#    locations: classpath:db/migration
+#    enabled: true
+#
+#jwt:
+#  key: x7h3vE/AH1GFm8Ut88TrYQO8yK2P1+o0mLr4IN9z7r8=
+#
+#server:
+#  port: 8080
