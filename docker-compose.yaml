@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:16.1
+    environment:
+      POSTGRES_DB: "time_tracker"
+      POSTGRES_USER: "neatly"
+      POSTGRES_PASSWORD: "neatly"
+      PG_DATA: "/var/lib/psqldata"
+    volumes:
+      - db_data:/var/lib/psqldata
+    ports:
+      - "5433:5432"
+
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5433/time_tracker"
+      SPRING_DATASOURCE_USERNAME: "neatly"
+      SPRING_DATASOURCE_PASSWORD: "neatly"
+    depends_on:
+      - postgres
+
+volumes:
+  db_data:
