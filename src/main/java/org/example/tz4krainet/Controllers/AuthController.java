@@ -24,6 +24,7 @@ public class AuthController {
         Users users= usersService.save(dto);
         return ResponseEntity.ok(jwtUtils.generateToken(users));
     }
+    // Аутентефикация пользователя
     @PostMapping("/login")
     public ResponseEntity<?> auth_users(@RequestBody LoginDTO dto){
        Users users= usersService.findByUsername(dto.getUsername());

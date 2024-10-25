@@ -16,17 +16,18 @@ import java.util.Map;
 
 @Component
 public class JWTUtils {
-
+    // Ключ беру из application.yaml
     @Value("${jwt.key}")
     private String key;
 
     // Генерация токена
+
     public String generateToken(Users users) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", users.getUser_id());
         claims.put("role", users.getUserRole());
-
-
+        // Беру два важных claim по которым проверяю все это id и role
+        // И создаю jwt токен, токен на 60 часов
         return JWT.create()
                 .withSubject("Users details")
                 .withClaim("id", users.getUser_id())
@@ -35,6 +36,9 @@ public class JWTUtils {
                 .withIssuedAt(new Date())
                 .sign(Algorithm.HMAC256(key));
     }
+
+    //  Проверка Токена
+    //  Получение claims
     public Map<String, Claim> validateTokenAndRetrieveClaim(String token) throws JWTVerificationException {
         JWTVerifier verifier = JWT.require(Algorithm.HMAC256(key))
                 .withSubject("Users details")

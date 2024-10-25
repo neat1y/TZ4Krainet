@@ -1,5 +1,6 @@
 package org.example.tz4krainet.Models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +29,7 @@ public class Project {
 
     @Column(name = "start_date")
     private Date startDate;
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "project")
     private Set<TimeRecord> timeRecords=new HashSet<>();
 

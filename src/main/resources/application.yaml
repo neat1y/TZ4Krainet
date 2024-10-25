@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: ${datasource.url:jdbc:postgresql://db:5432/time_tracker}  # Использует имя сервиса db
+    url: ${datasource.url:jdbc:postgresql://localhost:5432/time_tracker}  # Использует имя сервиса db
     driver-class-name: org.postgresql.Driver
-    username: ${datasource.username:neatly}
-    password: ${datasource.password:neatly}
+    username: ${datasource.username:postgres}
+    password: ${datasource.password:postgres}
   flyway:
     locations: classpath:db/migration
     enabled: true

@@ -10,7 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChangeRecordDTO {
-    private Integer projectId;
+    private Integer record_id;
     private String notes;
     private String task;
     private Integer time_in_hour;

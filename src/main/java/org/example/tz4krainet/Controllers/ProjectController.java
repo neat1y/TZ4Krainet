@@ -16,15 +16,18 @@ import java.util.List;
 @AllArgsConstructor
 public class ProjectController {
     private final ProjectService projectService;
+    //Получить все проекты
     @GetMapping("/all")
     public ResponseEntity<List<Project>> all_project(){
         return  ResponseEntity.ok(projectService.find_all());
     }
+    // изменить свой профилб
     @PatchMapping("/change/profile")
     public ResponseEntity<?> changeProfile(@RequestBody ChangeProjectDTO u){
         projectService.change(u);
         return ResponseEntity.ok("profile changed");
     }
+    // удалить проект
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteProfile(@RequestBody ChangeProjectDTO projectDTO){
         projectService.delete(projectDTO.getProjectName());

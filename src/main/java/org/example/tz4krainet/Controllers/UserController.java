@@ -24,18 +24,20 @@ public class UserController {
         usersService.change(u,id);
         return ResponseEntity.ok("profile changed");
     }
+    // Удаление Пользователя своего
     @DeleteMapping("/delete")
     public ResponseEntity<?> deleteProfile(Authentication authentication,@RequestBody ChangeProfileDTO password){
         Integer id= Integer.valueOf(authentication.getName());
         usersService.delete(id,password.getPassword());
         return ResponseEntity.ok("user deleted");
     }
+    // Изменение записи, нужно для пользователя, которого закинули на проект
     @PatchMapping("/change/record")
-    public ResponseEntity<?> changeRecord(@RequestBody ChangeRecordDTO changeRecordDTO,Authentication authentication){
-        Integer id= Integer.valueOf(authentication.getName());
-        recordService.changeRecord(changeRecordDTO,id);
+    public ResponseEntity<?> changeRecord(@RequestBody ChangeRecordDTO changeRecordDTO){
+        recordService.changeRecord(changeRecordDTO);
         return ResponseEntity.ok("profile changed");
     }
+    // Поиск всех своих проектов
     @GetMapping("/find/myprojects")
     public ResponseEntity<?> allMyprojects(Authentication authentication){
         Integer id= Integer.valueOf(authentication.getName());

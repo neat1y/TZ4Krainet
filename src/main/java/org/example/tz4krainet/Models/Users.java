@@ -1,5 +1,7 @@
 package org.example.tz4krainet.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -86,7 +88,8 @@ public class Users {
 
     @Column(name = "user_role")
     private String UserRole;
-
+    @JsonManagedReference
+    @JsonIgnoreProperties("")
     @OneToMany(mappedBy = "user")
     private Set<TimeRecord> timeRecords=new HashSet<>();
 }

@@ -23,7 +23,10 @@ public class JWTRequestFilter extends OncePerRequestFilter {
     private final HttpServletResponse httpServletResponse;
     private JWTUtils jwtUtils;
 
-
+    // Фильтр который ставиться перед каждым запросом на сервер, для проверки JWT
+    // Если в http запросе есть header под название Authorization
+    // И в нем есть Bearer то он начинает проверять JWT токен и забирает от туда роль и id для последуйщих запросов
+    // В последуйщем буду вызывать Authentication для проверки пользователя
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authHeader =request.getHeader("Authorization");

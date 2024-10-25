@@ -1,5 +1,7 @@
 package org.example.tz4krainet.Models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,8 +17,11 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TimeRecord {
-    @EmbeddedId
-    private TimeRecordId id;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "record_id")
+    private Integer record_id;
 
     @Column(name = "notes")
     private String notes;
@@ -31,18 +36,17 @@ public class TimeRecord {
     private Date date_at_which;
 
     @ManyToOne
-    @MapsId("userId")
+    @JsonIgnoreProperties("timeRecords")
     @JoinColumn(name="user_id",referencedColumnName = "users_id")
     private Users user;
 
-    @ManyToOne
-    @MapsId("projectId")
+    @ManyToOne@JsonIgnoreProperties("timeRecords")
     @JoinColumn(name="project_id",referencedColumnName = "project_id")
     private Project project;
 
     public TimeRecord(Project project, Users user) {
         this.project = project;
         this.user = user;
-        this.id=new TimeRecordId(project.getProjectId(),user.getUser_id());
     }
+
 }

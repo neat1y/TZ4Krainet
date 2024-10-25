@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final JWTRequestFilter jwtRequestFilter;
+    // Нстройка доступа на url  и проверка jwt токена
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity security) throws Exception {
         return security.csrf().disable()
@@ -30,6 +31,8 @@ public class SecurityConfig {
                         .requestMatchers("/project/change/profile").hasAnyRole("ADMIN")
                         .requestMatchers("/project/delete").hasAnyRole("ADMIN")
                         .requestMatchers("/admin/delete/record").hasAnyRole("ADMIN")
+                        .requestMatchers("/admin/findall/record").permitAll()
+                        .requestMatchers("/admin/findall/users").permitAll()
                         .requestMatchers("/user/change/record").hasAnyRole("ADMIN","USER")
                         .requestMatchers("/admin/project/find/all").authenticated()
                         .requestMatchers("/auth/reg").permitAll()
@@ -37,7 +40,7 @@ public class SecurityConfig {
                         .anyRequest().authenticated())
                 .build();
     }
-
+    // bean  для хэширование пароль
     @Bean
     public PasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
