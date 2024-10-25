@@ -1,0 +1,9 @@
+Проект запускается через команду docker-compose up --build
+В проекте реализовано 3 БД (project, record, users). Регистрация Users идет через Post /auth/reg ,
+Аутентификация идет через Post /auth/login
+Добавление записи и проектов идет через Post /admin/create/project , Post /admin/create/project
+Просмотр  от аутентифицированного пользователя какие у него есть проекты Get /user/find/myprojects
+Изменение данных пользователя и удаление себя идет через Patch /user/change/profile , Delete /user/delete
+Изменение данных о проекте и удаление проекта Patch /project/change/profile , Delete /project/delete
+Удаление записи в Record и поиск и поиск всех записей в record  Delete /admin/delete/record , Get /admin/findall/users
+Все права доступа к url описаны в SecurityConfig
