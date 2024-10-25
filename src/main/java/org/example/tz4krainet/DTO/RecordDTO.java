@@ -13,4 +13,5 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class RecordDTO {
     private Integer user_id;
     private Integer project_id;
+    private String task;
 }

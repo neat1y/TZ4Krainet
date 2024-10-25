@@ -55,6 +55,7 @@ public class RecordService {
         TimeRecord timeRecord= record.get();
         timeRecord.setTask(changeRecordDTO.getTask());
         timeRecord.setTime_in_hour(changeRecordDTO.getTime_in_hour());
+        timeRecord.setDate_of_end(new Date());
         if(changeRecordDTO.getNotes() !=null){
             timeRecord.setNotes(changeRecordDTO.getNotes());
         }

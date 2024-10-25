@@ -12,4 +12,4 @@ jwt:
   key: x7h3vE/AH1GFm8Ut88TrYQO8yK2P1+o0mLr4IN9z7r8=
 
 server:
-  port: 8081
+  port: 8080

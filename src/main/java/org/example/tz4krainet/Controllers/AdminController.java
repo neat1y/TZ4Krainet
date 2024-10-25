@@ -3,6 +3,7 @@ package org.example.tz4krainet.Controllers;
 import lombok.AllArgsConstructor;
 import org.example.tz4krainet.DTO.ProjectDTO;
 import org.example.tz4krainet.DTO.RecordDTO;
+import org.example.tz4krainet.Exception.NotAllComponentToSaveException;
 import org.example.tz4krainet.Service.ProjectService;
 import org.example.tz4krainet.Service.RecordService;
 import org.example.tz4krainet.Service.UsersService;
@@ -27,6 +28,9 @@ public class AdminController {
     // Создание записи, админ может создавать запись, если пользователь находиться в этой записи,то пользователь может ее изменять
     @PostMapping("/create/record")
     public ResponseEntity<?> create_time_tracker(@RequestBody RecordDTO  recordDTO){
+        if(recordDTO.getProject_id() == null || recordDTO.getUser_id() == null || recordDTO.getTask() == null){
+            throw new NotAllComponentToSaveException("no all component to save");
+        }
         recordService.save_record_with(recordDTO);
         return  ResponseEntity.ok("fine");
     }

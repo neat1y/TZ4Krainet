@@ -21,5 +21,6 @@ create table record(
     notes varchar(10000),
     task varchar(1000),
     time_in_hour int,
-    date_at_which DATE
+    date_at_which DATE,
+    date_of_end DATE
 );

@@ -32,6 +32,9 @@ public class TimeRecord {
     @Column(name ="time_in_hour")
     private Integer time_in_hour;
 
+    @Column(name= "date_of_end")
+    private Date date_of_end;
+
     @Column(name = "date_at_which")
     private Date date_at_which;
 
